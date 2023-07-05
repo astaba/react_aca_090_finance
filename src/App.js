@@ -29,16 +29,19 @@ function App() {
       });
     }
   }
-
-  console.log("App =>", yearlyData)
+  // console.log("App =>", yearlyData);
 
   return (
     <div>
       <Header />
       <UserInputs onCalculate={handleCalculate} />
-      {/* Todo: Show below table conditionally (only once result data is available) */}
-      {/* Show fallback text if no data is available */}
-      <ResultTable />
+      {!userInput && <p>No investment data yet.</p>}
+      {userInput && (
+        <ResultTable
+          results={yearlyData}
+          initialInvestment={+userInput["current-savings"]}
+        />
+      )}
     </div>
   );
 }
