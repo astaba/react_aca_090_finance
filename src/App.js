@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./components/header/Header";
-import UserInput from "./components/user-input/UserInput";
+import UserInputS from "./components/user-input/UserInputs";
 import ResultTable from "./components/result-table/ResultTable";
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
     <div>
       <Header />
 
-      <UserInput />
+      <UserInputS />
 
       {/* Todo: Show below table conditionally (only once result data is available) */}
       {/* Show fallback text if no data is available */}
