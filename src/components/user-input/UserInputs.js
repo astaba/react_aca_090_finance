@@ -2,22 +2,20 @@ import React, { useState } from "react";
 import Input from "./Input";
 
 const INITIAL_INPUT = {
-  "current-savings": "",
-  "yearly-contribution": "",
-  "expected-return": "",
-  duration: ""
+  "current-savings": "10000",
+  "yearly-contribution": "1200",
+  "expected-return": "5",
+  duration: "15"
 };
 
-export default function UserInputs() {
+export default function UserInputs({ onCalculate }) {
   const [inputData, setInputData] = useState(INITIAL_INPUT);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // ...
-    console.log("SUBMIT");
+    onCalculate(inputData);
   }
   const handleReset = () => {
-    // console.log("RESET");
     setInputData(INITIAL_INPUT)
   }
 
@@ -30,9 +28,9 @@ export default function UserInputs() {
     }))
   };
 
-  React.useEffect(() => {
-    console.log(inputData)
-  }, [inputData]);
+  // React.useEffect(() => {
+  //   console.log(inputData)
+  // }, [inputData]);
 
   return (
     <form className="form" onSubmit={handleSubmit}>
