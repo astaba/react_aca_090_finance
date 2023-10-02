@@ -13,10 +13,10 @@ function App() {
   const yearlyData = [];
 
   if (userInput) {
-    let currentSavings = +userInput["current-savings"];
-    const yearlyContribution = +userInput["yearly-contribution"];
-    const expectedReturn = +userInput["expected-return"] / 100;
-    const duration = +userInput["duration"];
+    let currentSavings = userInput["current-savings"];
+    const yearlyContribution = userInput["yearly-contribution"];
+    const expectedReturn = userInput["expected-return"] / 100;
+    const duration = userInput["duration"];
 
     for (let i = 0; i < duration; i++) {
       const yearlyInterest = currentSavings * expectedReturn;
@@ -35,11 +35,12 @@ function App() {
     <div>
       <Header />
       <UserInputs onCalculate={handleCalculate} />
-      {!userInput && <p>No investment data yet.</p>}
-      {userInput && (
+      {!userInput ? (
+        <p className="no-data">No investment data yet.</p>
+      ) : (
         <ResultTable
           results={yearlyData}
-          initialInvestment={+userInput["current-savings"]}
+          initialInvestment={userInput["current-savings"]}
         />
       )}
     </div>

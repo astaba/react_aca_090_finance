@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Input from "./Input";
+import classes from "./UserInputs.module.css";
 
 const INITIAL_INPUT = {
-  "current-savings": "10000",
-  "yearly-contribution": "1200",
-  "expected-return": "5",
-  duration: "15"
+  "current-savings": 10000,
+  "yearly-contribution": 1200,
+  "expected-return": 5,
+  duration: 15,
 };
 
 export default function UserInputs({ onCalculate }) {
@@ -21,20 +22,15 @@ export default function UserInputs({ onCalculate }) {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    // console.log(id, value);
     setInputData((prevInput) => ({
       ...prevInput,
-      [id]: value,
+      [id]: +value,
     }))
   };
 
-  // React.useEffect(() => {
-  //   console.log(inputData)
-  // }, [inputData]);
-
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <div className="input-group">
+    <form className={classes.form} onSubmit={handleSubmit}>
+      <div className={classes["input-group"]}>
         <Input
           id={"current-savings"}
           label={"Current Savings ($)"}
@@ -48,7 +44,7 @@ export default function UserInputs({ onCalculate }) {
           handleChange={handleChange}
         />
       </div>
-      <div className="input-group">
+      <div className={classes["input-group"]}>
         <Input
           id={"expected-return"}
           label={"Expected Interest (%, per year)"}
@@ -62,11 +58,11 @@ export default function UserInputs({ onCalculate }) {
           handleChange={handleChange}
         />
       </div>
-      <p className="actions">
-        <button type="reset" className="buttonAlt" onClick={handleReset}>
+      <p className={classes.actions}>
+        <button type="reset" className={classes.buttonAlt} onClick={handleReset}>
           Reset
         </button>
-        <button type="submit" className="button">
+        <button type="submit" className={classes.button}>
           Calculate
         </button>
       </p>
